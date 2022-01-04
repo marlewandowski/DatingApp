@@ -13,10 +13,10 @@ export class NavComponent implements OnInit {
   model: any={}
   currentUser$: Observable<User> | undefined;
 
-  constructor(private accountService: AccountService) { }
+  constructor(public accountService: AccountService) { }
 
   ngOnInit(): void {
-    this.currentUser$=this.accountService.currentUser$;
+
   }
 
   login(){
@@ -31,11 +31,4 @@ export class NavComponent implements OnInit {
     this.accountService.logout();
   }
 }
-//   getCurrentUser(){
-//     this.accountService.currentUser$.subscribe(user => {
-//     this.loggedIn = !!user;
-//     }, error =>{
-//       console.log(error);
-//     })
-//   }
-// }
+

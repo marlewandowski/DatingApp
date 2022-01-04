@@ -2,7 +2,7 @@
   <div class="container">
     <div class="container-fluid">
       <a class="navbar-brand" href="#">DatingApp</a>
-      <ul class="navbar-nav mr-auto" *ngIf="currentUser$ | async">
+      <ul class="navbar-nav mr-auto" *ngIf="accountService.currentUser$ | async">
         <li class="nav-item">
           <a class="nav-link " href="#">Matches</a>
         </li>
@@ -12,12 +12,9 @@
         <li class="nav-item">
           <a class="nav-link ">Messages</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" (click)="logout()" href="#">Logout </a>
-        </li>
       </ul>
 
-      <div class="dropdown" *ngIf="currentUser$ | async" dropdown>
+      <div class="dropdown" *ngIf="accountService.currentUser$ | async" dropdown>
         <a class="dropdown-toggle text-light" dropdownToggle>Welcome user</a>
         <div class="dropdown-menu mt-3" *dropdownMenu>
           <a class="dropdown-item">Edit Profile</a>
@@ -27,7 +24,7 @@
       </div>
 
       <!--use for loggin false [hidden] -->
-  <form *ngIf="(currentUser$ | async)===undefined" #loginForm="ngForm" class="d-flex" (ngSubmit)="login()" autocomplete="off">
+  <form *ngIf="!(accountService.currentUser$ | async)" #loginForm="ngForm" class="d-flex" (ngSubmit)="login()" autocomplete="off">
 
     <input name="username" [(ngModel)]="model.username" class="form-control mr-sm-2" type="username"
       placeholder="Username">
